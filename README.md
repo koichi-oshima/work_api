@@ -1,5 +1,8 @@
 # README
 
+## ER図出力
+bundle exec erd --title="課題ER図"
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
