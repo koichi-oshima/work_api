@@ -1,7 +1,6 @@
 module Api
   module V1
     class LecturesController < ApplicationController
-      before_action :check_params, only: :index
 
       def index
 
@@ -27,22 +26,6 @@ module Api
 
       end
 
-      private
-
-      def check_params
-
-        # パラメータ未設定の場合
-        #response_bad_request if params[:keyword].blank?
-        #response_bad_request if params[:teacher_name].blank?
-
-        # 該当データが存在しない場合
-        #@teacher = Teacher.find_by(name: params[:teacher_name])
-        #response_not_found(:teacher_name) if @teacher.blank?
-
-        #@subject = Subject.find_by(title: params[:keyword])
-        #response_not_found(:keyword) if @subject.blank?
-
-      end
 
     end
   end
