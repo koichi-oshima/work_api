@@ -19,10 +19,10 @@ module Api
         response_not_found(:keyword) and return if @subject.blank?
 
         # データ検索
-        output = Subject.search(keyword, teacher_name)
+        @data = Subject.search(keyword, teacher_name)
 
         # jsonを返す
-        render json: output
+        render json: @data
 
       end
 
