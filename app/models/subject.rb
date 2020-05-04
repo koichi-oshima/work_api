@@ -16,7 +16,7 @@ class Subject < ApplicationRecord
       lectures.title as lecture_title,
       lectures.date as lecture_date
     ")
-    .where( "subjects.title LIKE ? AND teachers.name LIKE ? ", "%#{keyword}%", "%#{teacher_name}%")
+    .where("subjects.title LIKE ? AND teachers.name LIKE ? ", "%#{keyword}%", "%#{teacher_name}%")
     .order("subjects.id")
 
   end

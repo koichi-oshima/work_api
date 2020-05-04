@@ -36,6 +36,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-doc'
   gem 'rails-erd' # ER図作成
+  gem 'rspec-rails'
 end
 
 group :development do
