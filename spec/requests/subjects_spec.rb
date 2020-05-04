@@ -1,21 +1,43 @@
 require 'rails_helper'
 
 RSpec.describe "Subjects", type: :request do
+  let (:keyword) { '統計基礎' }
+  let (:teacher_name) { '太郎' }
+  let (:test) { 'test' }
+
+
   describe "GET /api/v1/lectures?keyword=統計基礎&teacher_name=太郎" do
-    #before do
-    #  @user = FactoryBot.create(:name, { name: "太郎"})
-    #end
 
     it "200が返ってくる" do
-      post = create(:post, title: 'test-title')
-
-      get "/api/v1/lectures?keyword=" + @user[:keyword].to_s + "&teacher_name=" + @user[:name].to_s
-      expect(response).to be_success
-      expect(response.status).to eq 200
+      get api_v1_lectures_path, params: { keyword: keyword, teacher_name: teacher_name }
+      expect(response).to have_http_status(200)
     end
 
-    it "取得したデータのnameが山田太郎" do
-      expect(@json["name"]).to eq "山田太郎"
+    it "400が返ってくる" do
+      get api_v1_lectures_path, params: { keyword: keyword, teacher_name:"" }
+      expect(response).to have_http_status(400)
     end
+
+    it "400が返ってくる" do
+      get api_v1_lectures_path, params: { keyword: "", teacher_name: teacher_name }
+      expect(response).to have_http_status(400)
+    end
+
+    it "400が返ってくる" do
+      get api_v1_lectures_path, params: { keyword: "", teacher_name:"" }
+      expect(response).to have_http_status(400)
+    end
+
+    it "404が返ってくる" do
+      get api_v1_lectures_path, params: { keyword: keyword, teacher_name: test }
+      expect(response).to have_http_status(404)
+    end
+
+    it "404が返ってくる" do
+      get api_v1_lectures_path, params: { keyword: test, teacher_name: teacher_name }
+      expect(response).to have_http_status(404)
+    end
+
+
   end
 end
