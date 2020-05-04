@@ -3,40 +3,28 @@ module Api
     class LecturesController < ApplicationController
 
       def index
-        #teachers = Teacher.all
-        #render json: { status: 'SUCCESS', message: 'Load Lectures', data: teachers }
 
-        unless params[:keyword].blank?
-          keyword = params[:keyword].to_s
-        end
+        # パラメータ判定
+        if params[:keyword].blank?
+          response_bad_request
+        else
+
+        #unless params[:keyword].blank?
+        #  keyword = params[:keyword].to_s
+        #end
 
         unless params[:teacher_name].blank?
           teacher_name = params[:teacher_name].to_s
         end
 
-        #teacher = Teacher.where("name LIKE ?","%#{teacher_name}%")
+        # データ検索
+        output = Subject.search(keyword, teacher_name)
 
-        output= Subject.joins(:teacher, :lectures)
-
-        #output = Subject.joins(:teacher).where(teachers: {name: "テスト太郎"})
-        #.select("
-        # subjects.id,
-        # subjects.title,
-        # subjects.weekday,
-        # subjects.period,
-        # teachers.id,
-        # teachers.name
-        #")
-
-        p output
-
-
-        #render json: { status: 'SUCCESS', message: 'Load Lectures', data: teacher }
+        # jsonを返す
         render json: output
 
-
-
       end
+
 
     end
   end
