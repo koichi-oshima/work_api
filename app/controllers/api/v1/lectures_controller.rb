@@ -23,6 +23,7 @@ module Api
 
         # jsonを返す
         render json: @data
+        #render @data
 
       end
 

@@ -4,24 +4,26 @@ class Subject < ApplicationRecord
 
   def self.search(keyword, teacher_name)
 
-    #@temp = Subject.joins(:teacher, :lectures)
-    #.select("
-    #  subjects.id,
-    #  subjects.title,
-    #  subjects.weekday,
-    #  subjects.period,
-    #  teachers.id as teacher_id,
-    #  teachers.name as teacher_name,
-    #  lectures.id as lecture_id,
-    #  lectures.title as lecture_title,
-    #  lectures.date as lecture_date
-    #")
-    #.where("subjects.title LIKE ? AND teachers.name LIKE ? ", "%#{keyword}%", "%#{teacher_name}%")
-    #.order("subjects.id")
+    # データ検索
+    #Subject.joins(:teacher, :lectures)
+    data = Subject.joins(:teacher, :lectures)
+      .group(:teacher_id)
+      .where("subjects.title LIKE ? AND teachers.name LIKE ? ", "%#{keyword}%", "%#{teacher_name}%")
+      .order("lectures.date")
 
+   #binding.pry
 
-    Subject.preload(:teacher, :lectures)
-      .as_json(
+    # jsonフォーマット
+    #Subject.preload(:teacher, :lectures).as_json(include: [:teacher, :lectures])
+
+    # このクエリにwhere句を追加したい。
+     #Subject.preload(:teacher, :lectures).as_json(
+
+     # エラーになる。
+     #Subject.preload(:teacher, :lectures).where(teacher: { name: "山田太郎" }).as_json(
+
+     #dataに検索結果を格納
+     data.as_json(
         :only => [:id, :title, :weekday, :period],
           include:
           [
