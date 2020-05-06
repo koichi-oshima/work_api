@@ -2,7 +2,7 @@
 rails db:migrate RAILS_ENV=test
 
 # テスト実行
-bundle exec rspec
+bundle exec rspec -f d
 
 # rubocop実行
 追記予定
