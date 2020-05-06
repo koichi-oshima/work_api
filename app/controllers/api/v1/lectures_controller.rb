@@ -21,6 +21,7 @@ module Api
         # データ検索
         @data = Subject.search(keyword, teacher_name)
 
+        #binding.pry
         # jsonを返す
         render json: @data
         #render @data

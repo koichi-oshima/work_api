@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Subjects", type: :request do
-  let (:keyword) { '統計基礎' }
+  let (:keyword) { '統計' }
   let (:teacher_name) { '太郎' }
   let (:test) { 'test' }
 
@@ -10,9 +10,13 @@ RSpec.describe "Subjects", type: :request do
 
     it "200が返ってくる" do
       get api_v1_lectures_path, params: { keyword: keyword, teacher_name: teacher_name }
-      expect(response).to have_http_status(200)
       json = JSON.parse(response.body)
-      expect(teacher_name).to_s eq json['teacher_name']
+
+      # リクエスト成功を表す200が返ってきたか確認する。
+      expect(response.status).to eq(200)
+
+      # 正しい数のデータが返されたか確認する。
+      expect(json[].length).to eq(10)
     end
 
     # パラメータがセットされていない

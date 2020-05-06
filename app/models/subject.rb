@@ -2,6 +2,8 @@ class Subject < ApplicationRecord
   belongs_to :teacher
   has_many :lectures
 
+  #ActiveRecord::Base.include_root_in_json = true
+
   def self.search(keyword, teacher_name)
 
     # データ検索
@@ -11,9 +13,8 @@ class Subject < ApplicationRecord
       .where("subjects.title LIKE ? AND teachers.name LIKE ? ", "%#{keyword}%", "%#{teacher_name}%")
       .order("lectures.date")
 
-   #binding.pry
-
     # jsonフォーマット
+
     #Subject.preload(:teacher, :lectures).as_json(include: [:teacher, :lectures])
 
     # このクエリにwhere句を追加したい。
@@ -23,21 +24,23 @@ class Subject < ApplicationRecord
      #Subject.preload(:teacher, :lectures).where(teacher: { name: "山田太郎" }).as_json(
 
      #dataに検索結果を格納
-     data.as_json(
+     #data.as_json(root: true)
+      data.as_json(
         :only => [:id, :title, :weekday, :period],
-          include:
-          [
-            {
-              teacher: {
-                only: [:id, :name]
-              }
-            },
-            {
-              lectures: {
-                only: [:id, :title, :date]
-              }
+        include:
+        [
+          {
+            teacher: {
+              only: [:id, :name]
             }
-          ]
+          },
+          {
+            lectures: {
+              only: [:id, :title, :date]
+            }
+          }
+        ]
+        #], root: true
       )
 
   end
