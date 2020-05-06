@@ -23,7 +23,8 @@ module Api
 
         #binding.pry
         # jsonを返す
-        render json: @data
+        render json: { subjects: @data }
+        #render json: @data
         #render @data
 
       end
