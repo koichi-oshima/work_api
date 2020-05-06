@@ -17,7 +17,8 @@ RSpec.describe "Subjects", type: :request do
 
 
   # APIのステータスコード確認
-  describe "GET /api/v1/lectures?keyword=統計&teacher_name=太郎" do
+  # GET /api/v1/lectures?keyword=統計&teacher_name=太郎
+  describe "#index" do
     context 'テーブルに存在するパラメータを渡す' do
       it "200が返ってくる" do
         get api_v1_lectures_path, params: { keyword: keyword, teacher_name: teacher_name }
