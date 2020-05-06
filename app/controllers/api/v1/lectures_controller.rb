@@ -22,7 +22,6 @@ module Api
         @data = Subject.search(keyword, teacher_name)
 
         render json: { subjects: @data }
-        #render json: @data
       end
 
 
