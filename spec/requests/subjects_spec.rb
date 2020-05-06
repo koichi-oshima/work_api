@@ -4,7 +4,7 @@ RSpec.describe "Subjects", type: :request do
 
   ## 変数定義
   # APIで設定するパラメータ
-  # sunjectsモデルに存在する値
+  # subjectsモデルに存在する値
   let (:keyword) { '統計' }
   # teacherモデルに存在する値
   let (:teacher_name) { '太郎' }
@@ -15,7 +15,6 @@ RSpec.describe "Subjects", type: :request do
   # teacherモデルに存在する値
   let (:exist_teacher) { 'テスト太郎' }
 
-  #########################
 
   # APIのステータスコード確認
   describe "GET /api/v1/lectures?keyword=統計&teacher_name=太郎" do
