@@ -21,9 +21,7 @@ module Api
         # データ検索
         @data = Subject.search(keyword, teacher_name)
 
-        # jsonを返す
-        render json: @data
-
+        render json: { subjects: @data }
       end
 
 
