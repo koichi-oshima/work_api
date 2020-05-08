@@ -5,7 +5,7 @@ class Subject < ApplicationRecord
   # データの有無を確認
   def self.check(keyword)
     subject = Subject.where("title LIKE ?", "%#{keyword}%")
-    binding.pry
+    #binding.pry
     return true if subject.blank?
   end
 

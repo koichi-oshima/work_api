@@ -3,7 +3,7 @@ class Teacher < ApplicationRecord
 
   def self.check(teacher_name)
     teacher = Teacher.where("name LIKE ?", "%#{teacher_name}")
-    binding.pry
+    #binding.pry
     return true if teacher.blank?
   end
 

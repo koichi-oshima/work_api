@@ -7,8 +7,8 @@ class ApplicationController < ActionController::API
   end
 
   # 404 Not Found
-  def response_not_found(class_name = 'subject')
-    render status: 404, json: { status: 404, message: "#{class_name.capitalize} Not Found" }
+  def response_not_found
+    render status: 404, json: { status: 404, message: "Response Not Found" }
   end
 
 end

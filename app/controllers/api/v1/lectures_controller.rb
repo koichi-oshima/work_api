@@ -12,8 +12,8 @@ module Api
         teacher_name = params[:teacher_name].to_s
 
         # データの有無を確認
-        response_not_found(:keyword) and return if Subject.check(keyword)
-        response_not_found(:teacher_name) and return Teacher.check(teacher_name)
+        response_not_found and return if Subject.check(keyword)
+        response_not_found and return if Teacher.check(teacher_name)
 
         # データ検索
         @data = Subject.search(keyword, teacher_name)
