@@ -11,12 +11,9 @@ module Api
         keyword = params[:keyword].to_s
         teacher_name = params[:teacher_name].to_s
 
-        # 対象データが無い場合
-        @teacher = Teacher.where("name LIKE ?", "%#{teacher_name}%")
-        response_not_found(:teacher_name) and return if @teacher.blank?
-
-        @subject = Subject.where("title LIKE ?", "%#{keyword}%")
-        response_not_found(:keyword) and return if @subject.blank?
+        # データの有無を確認
+        response_not_found(:keyword) and return if Subject.check(keyword)
+        response_not_found(:teacher_name) and return Teacher.check(teacher_name)
 
         # データ検索
         @data = Subject.search(keyword, teacher_name)
