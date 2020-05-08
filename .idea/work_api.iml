@@ -153,6 +153,24 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="annotate (vbundled(3.1.1)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/annotate-3.1.1/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/annotate-3.1.1/lib" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/annotate-3.1.1/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/annotate-3.1.1/lib" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/annotate-3.1.1/bin" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="arel (vbundled(9.0.0)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />

@@ -43,6 +43,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rails'
   gem "rspec_junit_formatter" # circle ci
+  gem 'annotate'
 end
 
 group :development do
