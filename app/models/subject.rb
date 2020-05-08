@@ -2,15 +2,22 @@ class Subject < ApplicationRecord
   belongs_to :teacher
   has_many :lectures
 
+  # データの有無を確認
+  def self.check(keyword)
+    subject = Subject.where("title LIKE ?", "%#{keyword}%")
+    #binding.pry
+    return true if subject.blank?
+  end
+
+  # データ検索
   def self.search(keyword, teacher_name)
 
-    # データ検索
     data = Subject.joins(:teacher, :lectures)
     .group(:teacher_id)
     .where("subjects.title LIKE ? AND teachers.name LIKE ? ", "%#{keyword}%", "%#{teacher_name}%")
     .order("lectures.date")
 
-    #dataに検索結果を格納
+    # 必要なデータのみ整形
     data.as_json(
       :only => [:id, :title, :weekday, :period],
       include:
